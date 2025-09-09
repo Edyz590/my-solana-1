@@ -1,0 +1,14 @@
+tasks:
+  - name: Setup Solana + Anchor
+    init: |
+      curl -sSf https://sh.rustup.rs | sh -s -- -y
+      source $HOME/.cargo/env
+      sh -c "$(curl -sSfL https://release.solana.com/stable/install)"
+      export PATH="/home/gitpod/.local/share/solana/install/active_release/bin:$PATH"
+      npm install -g @project-serum/anchor-cli
+      anchor --version
+      solana --version
+    command: |
+      echo "Solana + Anchor ready!"
+      solana config set --url https://api.devnet.solana.com
+      solana-keygen new --force
